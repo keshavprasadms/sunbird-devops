@@ -1,25 +1,26 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: echo-server
-  labels:
-    app: echo-server
+  name: echo
+  namespace: tekton-demo
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: echo-server
+      app: echo
   template:
     metadata:
+      annotations:
+        readiness.status.sidecar.istio.io/applicationPorts: ""
       labels:
-        app: echo-server
+        app: echo
     spec:
       containers:
-        - name: echo-server
-          image: index.docker.io/keshavprasad/echo
-          ports:
-            - containerPort: 9595
+      - name: echo
+        image: index.docker.io/keshavprasad/echo
         resources:
           limits:
             memory: "100Mi"
             cpu: "50m"
+        ports:
+        - containerPort: 9595
