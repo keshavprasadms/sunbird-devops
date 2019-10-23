@@ -1,5 +1,5 @@
 <?xml version='1.1' encoding='UTF-8'?>
-<flow-definition plugin="workflow-job@2.33">
+<flow-definition plugin="workflow-job@2.34">
   <actions>
     <org.jenkinsci.plugins.workflow.multibranch.JobPropertyTrackerAction plugin="workflow-multibranch@2.21">
       <jobPropertyDescriptors>
@@ -29,7 +29,7 @@
         <hudson.model.StringParameterDefinition>
           <name>absolute_job_path</name>
           <description>&lt;font color=dimgray size=2&gt;&lt;b&gt;Do not change this value! The metadata.json will be copied from this job.&lt;/b&gt;&lt;/font&gt;</description>
-          <defaultValue>ArtifactUpload/dev/Core/Learner</defaultValue>
+          <defaultValue>ArtifactUpload/staging/Core/Learner</defaultValue>
           <trim>false</trim>
         </hudson.model.StringParameterDefinition>
         <hudson.model.StringParameterDefinition>
@@ -99,12 +99,13 @@ return &quot;&quot;&quot;&lt;b&gt;This parameter is not used&lt;/b&gt;&quot;&quo
       <throttleOption>project</throttleOption>
       <limitOneJobWithMatchingParams>false</limitOneJobWithMatchingParams>
       <paramsToUseForLimit></paramsToUseForLimit>
+      <configVersion>1</configVersion>
     </hudson.plugins.throttleconcurrents.ThrottleJobProperty>
     <org.jenkinsci.plugins.workflow.job.properties.PipelineTriggersJobProperty>
       <triggers>
         <jenkins.triggers.ReverseBuildTrigger>
           <spec></spec>
-          <upstreamProjects>ArtifactUpload/dev/Core/Learner</upstreamProjects>
+          <upstreamProjects></upstreamProjects>
           <threshold>
             <name>SUCCESS</name>
             <ordinal>0</ordinal>
@@ -115,8 +116,8 @@ return &quot;&quot;&quot;&lt;b&gt;This parameter is not used&lt;/b&gt;&quot;&quo
       </triggers>
     </org.jenkinsci.plugins.workflow.job.properties.PipelineTriggersJobProperty>
   </properties>
-  <definition class="org.jenkinsci.plugins.workflow.cps.CpsScmFlowDefinition" plugin="workflow-cps@2.73">
-    <scm class="hudson.plugins.git.GitSCM" plugin="git@3.11.0">
+  <definition class="org.jenkinsci.plugins.workflow.cps.CpsScmFlowDefinition" plugin="workflow-cps@2.74">
+    <scm class="hudson.plugins.git.GitSCM" plugin="git@3.12.0">
       <configVersion>2</configVersion>
       <userRemoteConfigs>
         <hudson.plugins.git.UserRemoteConfig>

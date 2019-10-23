@@ -20,7 +20,7 @@
       </strategy>
     </jenkins.model.BuildDiscarderProperty>
     <org.jenkinsci.plugins.workflow.job.properties.DisableConcurrentBuildsJobProperty/>
-    <com.sonyericsson.rebuild.RebuildSettings plugin="rebuild@1.30">
+    <com.sonyericsson.rebuild.RebuildSettings plugin="rebuild@1.31">
       <autoRebuild>false</autoRebuild>
       <rebuildDisabled>false</rebuildDisabled>
     </com.sonyericsson.rebuild.RebuildSettings>
@@ -29,7 +29,7 @@
         <org.biouno.unochoice.DynamicReferenceParameter plugin="uno-choice@2.1">
           <name>private_branch</name>
           <description></description>
-          <randomName>choice-parameter-2914866095851737</randomName>
+          <randomName>choice-parameter-329684411621281</randomName>
           <visibleItemCount>1</visibleItemCount>
           <script class="org.biouno.unochoice.model.GroovyScript">
             <secureScript plugin="script-security@1.58">
@@ -54,7 +54,7 @@ return &quot;&quot;&quot;&lt;b&gt;This parameter is not used&lt;/b&gt;&quot;&quo
         <org.biouno.unochoice.DynamicReferenceParameter plugin="uno-choice@2.1">
           <name>branch_or_tag</name>
           <description></description>
-          <randomName>choice-parameter-2914866097410763</randomName>
+          <randomName>choice-parameter-329684414188200</randomName>
           <visibleItemCount>1</visibleItemCount>
           <script class="org.biouno.unochoice.model.GroovyScript">
             <secureScript plugin="script-security@1.58">

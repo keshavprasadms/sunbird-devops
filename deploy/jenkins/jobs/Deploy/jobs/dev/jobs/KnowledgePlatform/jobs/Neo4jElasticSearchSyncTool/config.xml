@@ -1,5 +1,5 @@
 <?xml version='1.1' encoding='UTF-8'?>
-<flow-definition plugin="workflow-job@2.33">
+<flow-definition plugin="workflow-job@2.34">
   <actions>
     <org.jenkinsci.plugins.workflow.multibranch.JobPropertyTrackerAction plugin="workflow-multibranch@2.21">
       <jobPropertyDescriptors>
@@ -29,7 +29,7 @@
         <hudson.model.StringParameterDefinition>
           <name>absolute_job_path</name>
           <description>&lt;font color=dimgray size=2&gt;&lt;b&gt;Do not change this value! The metadata.json will be copied from this job.&lt;/b&gt;&lt;/font&gt;</description>
-          <defaultValue>ArtifactUpload/dev/KnowledgePlatform/SyncTool</defaultValue>
+          <defaultValue>ArtifactUpload/staging/KnowledgePlatform/SyncTool</defaultValue>
           <trim>false</trim>
         </hudson.model.StringParameterDefinition>
         <org.biouno.unochoice.CascadeChoiceParameter plugin="uno-choice@2.1">
@@ -120,10 +120,10 @@ return &quot;&lt;b&gt;Not Applicable&lt;/b&gt;&quot;
               <string>syncbyobjecttype</string>
               <string>syncbyids</string>
               <string>syncbydaterange</string>
-              <string>syncbybookmarkids</string>
               <string>syncleafnodescountbyids</string>
-              <string>syncleafnodesbyids</string>
               <string>syncbatch</string>
+              <string>syncleafnodesbyids</string>
+              <string>migratequestionextproperties</string>
             </a>
           </choices>
         </hudson.model.ChoiceParameterDefinition>
@@ -136,8 +136,9 @@ return &quot;&lt;b&gt;Not Applicable&lt;/b&gt;&quot;
                         --startDate 2018-03-01 --endDate 2018-03-31&lt;br&gt;
                         --objectType Content --startDate 2018-03-01 --endDate 2018-03-31&lt;br&gt;
                         --graphId en --objectType Word&lt;br&gt;
+                        --objectType AssessmentItem&lt;br&gt;
   --graph domain --objectType Channel&lt;br&gt;&lt;/b&gt;&lt;/font&gt;</description>
-          <defaultValue>--ids</defaultValue>
+          <defaultValue>--graph domain</defaultValue>
           <trim>false</trim>
         </hudson.model.StringParameterDefinition>
         <org.biouno.unochoice.DynamicReferenceParameter plugin="uno-choice@2.1">
@@ -206,8 +207,8 @@ return &quot;&quot;&quot;&lt;b&gt;This parameter is not used&lt;/b&gt;&quot;&quo
       <triggers/>
     </org.jenkinsci.plugins.workflow.job.properties.PipelineTriggersJobProperty>
   </properties>
-  <definition class="org.jenkinsci.plugins.workflow.cps.CpsScmFlowDefinition" plugin="workflow-cps@2.73">
-    <scm class="hudson.plugins.git.GitSCM" plugin="git@3.11.0">
+  <definition class="org.jenkinsci.plugins.workflow.cps.CpsScmFlowDefinition" plugin="workflow-cps@2.74">
+    <scm class="hudson.plugins.git.GitSCM" plugin="git@3.12.0">
       <configVersion>2</configVersion>
       <userRemoteConfigs>
         <hudson.plugins.git.UserRemoteConfig>
