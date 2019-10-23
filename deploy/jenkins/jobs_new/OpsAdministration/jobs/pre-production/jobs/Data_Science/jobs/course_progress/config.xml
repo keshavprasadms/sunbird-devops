@@ -1,0 +1,81 @@
+<?xml version='1.1' encoding='UTF-8'?>
+<project>
+  <actions/>
+  <description></description>
+  <keepDependencies>false</keepDependencies>
+  <properties>
+    <com.sonyericsson.rebuild.RebuildSettings plugin="rebuild@1.31">
+      <autoRebuild>false</autoRebuild>
+      <rebuildDisabled>false</rebuildDisabled>
+    </com.sonyericsson.rebuild.RebuildSettings>
+    <hudson.model.ParametersDefinitionProperty>
+      <parameterDefinitions>
+        <hudson.model.StringParameterDefinition>
+          <name>telemetryreports_branch</name>
+          <description></description>
+          <defaultValue>portal_dashboards</defaultValue>
+          <trim>false</trim>
+        </hudson.model.StringParameterDefinition>
+        <me.leejay.jenkins.dateparameter.DateParameterDefinition plugin="date-parameter@0.0.4">
+          <name>date</name>
+          <description></description>
+          <stringLocalDateValue>
+            <stringLocalDate>LocalDate.now()</stringLocalDate>
+            <stringDateFormat>dd/MM/yyyy</stringDateFormat>
+          </stringLocalDateValue>
+        </me.leejay.jenkins.dateparameter.DateParameterDefinition>
+      </parameterDefinitions>
+    </hudson.model.ParametersDefinitionProperty>
+    <hudson.plugins.throttleconcurrents.ThrottleJobProperty plugin="throttle-concurrents@2.0.1">
+      <maxConcurrentPerNode>0</maxConcurrentPerNode>
+      <maxConcurrentTotal>0</maxConcurrentTotal>
+      <categories class="java.util.concurrent.CopyOnWriteArrayList"/>
+      <throttleEnabled>false</throttleEnabled>
+      <throttleOption>project</throttleOption>
+      <limitOneJobWithMatchingParams>false</limitOneJobWithMatchingParams>
+      <paramsToUseForLimit></paramsToUseForLimit>
+    </hudson.plugins.throttleconcurrents.ThrottleJobProperty>
+  </properties>
+  <scm class="hudson.plugins.git.GitSCM" plugin="git@3.12.0">
+    <configVersion>2</configVersion>
+    <userRemoteConfigs>
+      <hudson.plugins.git.UserRemoteConfig>
+        <url>https://github.com/DIKSHA-NCTE/ntp-devops.git</url>
+        <credentialsId>932d6790-8f08-4644-8e2f-479d8d491b8d</credentialsId>
+      </hudson.plugins.git.UserRemoteConfig>
+    </userRemoteConfigs>
+    <branches>
+      <hudson.plugins.git.BranchSpec>
+        <name>*/release-2.3.0</name>
+      </hudson.plugins.git.BranchSpec>
+    </branches>
+    <doGenerateSubmoduleConfigurations>false</doGenerateSubmoduleConfigurations>
+    <submoduleCfg class="list"/>
+    <extensions/>
+  </scm>
+  <canRoam>true</canRoam>
+  <disabled>false</disabled>
+  <blockBuildWhenDownstreamBuilding>false</blockBuildWhenDownstreamBuilding>
+  <blockBuildWhenUpstreamBuilding>false</blockBuildWhenUpstreamBuilding>
+  <triggers/>
+  <concurrentBuild>false</concurrentBuild>
+  <builders>
+    <hudson.tasks.Shell>
+      <command>#ansible-\playbook ansible/portal.yml -i ansible/inventory/pre-production/DataPipeline/hosts --vault-password-file &quot;/var/lib/jenkins/secrets/vault-pass&quot; --extra-vars &quot;git_user=${git_user} git_pass=${git_pass} script_name=course_progress_report.py --data_store_location=&apos;/mount/data&apos;&quot;
+ansible-\playbook ansible/portal.yml -i ansible/inventory/pre-production/DataPipeline/hosts --vault-password-file &quot;/var/lib/jenkins/secrets/vault-pass&quot; --extra-vars &quot;git_user=${git_user} git_pass=${git_pass} script_name=course_progress_report.py telemetryreports_branch=$telemetryreports_branch date=$date&quot; --tags course_progress,common
+</command>
+    </hudson.tasks.Shell>
+  </builders>
+  <publishers/>
+  <buildWrappers>
+    <org.jenkinsci.plugins.credentialsbinding.impl.SecretBuildWrapper plugin="credentials-binding@1.20">
+      <bindings>
+        <org.jenkinsci.plugins.credentialsbinding.impl.UsernamePasswordMultiBinding>
+          <credentialsId>932d6790-8f08-4644-8e2f-479d8d491b8d</credentialsId>
+          <usernameVariable>git_user</usernameVariable>
+          <passwordVariable>git_pass</passwordVariable>
+        </org.jenkinsci.plugins.credentialsbinding.impl.UsernamePasswordMultiBinding>
+      </bindings>
+    </org.jenkinsci.plugins.credentialsbinding.impl.SecretBuildWrapper>
+  </buildWrappers>
+</project>

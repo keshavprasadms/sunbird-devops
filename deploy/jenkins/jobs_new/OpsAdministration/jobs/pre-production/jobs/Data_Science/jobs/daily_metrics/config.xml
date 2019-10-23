@@ -1,0 +1,93 @@
+<?xml version='1.1' encoding='UTF-8'?>
+<project>
+  <actions/>
+  <description></description>
+  <keepDependencies>false</keepDependencies>
+  <properties>
+    <jenkins.model.BuildDiscarderProperty>
+      <strategy class="hudson.tasks.LogRotator">
+        <daysToKeep>-1</daysToKeep>
+        <numToKeep>5</numToKeep>
+        <artifactDaysToKeep>-1</artifactDaysToKeep>
+        <artifactNumToKeep>-1</artifactNumToKeep>
+      </strategy>
+    </jenkins.model.BuildDiscarderProperty>
+    <com.sonyericsson.rebuild.RebuildSettings plugin="rebuild@1.31">
+      <autoRebuild>false</autoRebuild>
+      <rebuildDisabled>false</rebuildDisabled>
+    </com.sonyericsson.rebuild.RebuildSettings>
+    <hudson.model.ParametersDefinitionProperty>
+      <parameterDefinitions>
+        <hudson.model.StringParameterDefinition>
+          <name>telemetryreports_branch</name>
+          <description>ETB_Fixes
+portal_dashboard</description>
+          <defaultValue></defaultValue>
+          <trim>false</trim>
+        </hudson.model.StringParameterDefinition>
+        <hudson.model.StringParameterDefinition>
+          <name>date</name>
+          <description></description>
+          <defaultValue></defaultValue>
+          <trim>false</trim>
+        </hudson.model.StringParameterDefinition>
+      </parameterDefinitions>
+    </hudson.model.ParametersDefinitionProperty>
+    <hudson.plugins.throttleconcurrents.ThrottleJobProperty plugin="throttle-concurrents@2.0.1">
+      <maxConcurrentPerNode>0</maxConcurrentPerNode>
+      <maxConcurrentTotal>0</maxConcurrentTotal>
+      <categories class="java.util.concurrent.CopyOnWriteArrayList"/>
+      <throttleEnabled>false</throttleEnabled>
+      <throttleOption>project</throttleOption>
+      <limitOneJobWithMatchingParams>false</limitOneJobWithMatchingParams>
+      <paramsToUseForLimit></paramsToUseForLimit>
+    </hudson.plugins.throttleconcurrents.ThrottleJobProperty>
+  </properties>
+  <scm class="hudson.plugins.git.GitSCM" plugin="git@3.12.0">
+    <configVersion>2</configVersion>
+    <userRemoteConfigs>
+      <hudson.plugins.git.UserRemoteConfig>
+        <url>https://github.com/DIKSHA-NCTE/ntp-devops.git</url>
+        <credentialsId>932d6790-8f08-4644-8e2f-479d8d491b8d</credentialsId>
+      </hudson.plugins.git.UserRemoteConfig>
+    </userRemoteConfigs>
+    <branches>
+      <hudson.plugins.git.BranchSpec>
+        <name>*/release-2.3.0</name>
+      </hudson.plugins.git.BranchSpec>
+    </branches>
+    <doGenerateSubmoduleConfigurations>false</doGenerateSubmoduleConfigurations>
+    <submoduleCfg class="list"/>
+    <extensions/>
+  </scm>
+  <canRoam>true</canRoam>
+  <disabled>false</disabled>
+  <blockBuildWhenDownstreamBuilding>false</blockBuildWhenDownstreamBuilding>
+  <blockBuildWhenUpstreamBuilding>false</blockBuildWhenUpstreamBuilding>
+  <triggers/>
+  <concurrentBuild>false</concurrentBuild>
+  <builders>
+    <hudson.tasks.Shell>
+      <command>#ansible-\playbook ansible/portal.yml -i ansible/inventory/pre-production/DataPipeline/hosts --vault-password-file &quot;/var/lib/jenkins/secrets/vault-pass&quot; --extra-vars &quot;git_user=${git_user} git_pass=${git_pass} script_name=daily_metrics_refactored.py&quot;
+#ansible-\playbook ansible/portal.yml -i ansible/inventory/pre-production/DataPipeline/hosts --vault-password-file &quot;/var/lib/jenkins/secrets/vault-pass&quot; --extra-vars &quot;git_user=${git_user} git_pass=${git_pass} script_name=daily_metrics_refactored.py druid_hostname=http://11.5.2.10:8082/ telemetryreports_branch=$telemetryreports_branch derived_summary_dir derived/wfs&quot; --tags daily_metrics_refactored,common
+echo $telemetryreports_branch
+#ansible-\playbook ansible/portal.yml -i ansible/inventory/pre-production/DataPipeline/hosts --vault-password-file &quot;/var/lib/jenkins/secrets/vault-pass&quot; --extra-vars &quot;git_user=${git_user} git_pass=${git_pass} script_name=daily_metrics_refactored.py druid_hostname=http://11.5.2.10:8082/ telemetryreports_branch=$telemetryreports_branch --tags daily_metrics_refactored,common -execution_date $date&quot;
+#ansible-\playbook ansible/portal.yml -i ansible/inventory/pre-production/DataPipeline/hosts --vault-password-file &quot;/var/lib/jenkins/secrets/vault-pass&quot; --extra-vars &quot;git_user=${git_user} git_pass=${git_pass} script_name=district_monthly.py  druid_hostname=http://11.5.2.10:8082/ telemetryreports_branch=$telemetryreports_branch&quot; --tags district_monthly,common
+#ansible-\playbook ansible/portal.yml -i ansible/inventory/pre-production/DataPipeline/hosts --vault-password-file &quot;/var/lib/jenkins/secrets/vault-pass&quot; --extra-vars &quot;git_user=${git_user} git_pass=${git_pass} script_name=daily_metrics_refactored.py org_search_api=http://11.5.1.7:9000/ content_search_api=http://11.5.0.8:9000/ content_hierarchy_api=http://11.5.0.9:8080/ druid_hostname=http://11.5.2.10:8082/ telemetryreports_branch=$telemetryreports_branch -execution_date $date&quot; --tags daily_metrics_refactored,common
+ansible-\playbook ansible/portal.yml -i ansible/inventory/pre-production/DataPipeline/hosts --vault-password-file &quot;/var/lib/jenkins/secrets/vault-pass&quot; --extra-vars &quot;git_user=${git_user} git_pass=${git_pass} script_name=daily_metrics_refactored.py org_search_api=http://11.4.1.4:9000/ content_search_api=http://11.4.3.20:9000/ content_hierarchy_api=http://11.4.3.21:8080/ druid_hostname=http://24.0.0.6:8082/ telemetryreports_branch=$telemetryreports_branch date=$date&quot; --tags daily_metrics_refactored derived_summary_dir derived/wfs&quot;
+</command>
+    </hudson.tasks.Shell>
+  </builders>
+  <publishers/>
+  <buildWrappers>
+    <org.jenkinsci.plugins.credentialsbinding.impl.SecretBuildWrapper plugin="credentials-binding@1.20">
+      <bindings>
+        <org.jenkinsci.plugins.credentialsbinding.impl.UsernamePasswordMultiBinding>
+          <credentialsId>932d6790-8f08-4644-8e2f-479d8d491b8d</credentialsId>
+          <usernameVariable>git_user</usernameVariable>
+          <passwordVariable>git_pass</passwordVariable>
+        </org.jenkinsci.plugins.credentialsbinding.impl.UsernamePasswordMultiBinding>
+      </bindings>
+    </org.jenkinsci.plugins.credentialsbinding.impl.SecretBuildWrapper>
+  </buildWrappers>
+</project>
