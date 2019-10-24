@@ -96,4 +96,10 @@ echo -e "\n\e[0;32m${bold}Creating bashrc for jenkins user ${normal}"
 cp /etc/skel/.bashrc /var/lib/jenkins
 chown jenkins:jenkins /var/lib/jenkins/.bashrc
 
+echo -e "\n\e[0;32m${bold}Setting timezone to IST ${normal}"
+timedatectl set-timezone Asia/Kolkata
+
+echo -e "\n\e[0;32m${bold}Installing nvm${normal}"
+su jenkins bash -c "curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.34.0/install.sh | bash"
+
 echo -e "\n\e[0;32m${bold}Installation complete. Please go to your jenkins URL and continue setup if this first run..${normal}"
