@@ -1,0 +1,39 @@
+
+Showing logs for build [32mkeshavprasadms-sunbird-devops-m-zw88j-1[0m stage [32mfrom-build-pack[0m and container [32mstep-credential-initializer-7fw2m[0m
+{"level":"warn","ts":1581920046.483936,"logger":"fallback-logger","caller":"logging/config.go:69","msg":"Fetch GitHub commit ID from kodata failed: \"ref: refs/heads/0.8.0-**-support-backwards-incompats\" is not a valid GitHub commit ID"}
+{"level":"info","ts":1581920046.4843209,"logger":"fallback-logger","caller":"creds-init/main.go:40","msg":"Credentials initialized."}
+
+Showing logs for build [32mkeshavprasadms-sunbird-devops-m-zw88j-1[0m stage [32mfrom-build-pack[0m and container [32mstep-working-dir-initializer-t4g8f[0m
+{"level":"warn","ts":1581920047.0648556,"logger":"fallback-logger","caller":"logging/config.go:69","msg":"Fetch GitHub commit ID from kodata failed: open /var/run/ko/HEAD: no such file or directory"}
+{"level":"info","ts":1581920047.0666552,"logger":"fallback-logger","caller":"bash/main.go:64","msg":"Successfully executed command \"sh -c mkdir -p /workspace/source\"; output "}
+
+Showing logs for build [32mkeshavprasadms-sunbird-devops-m-zw88j-1[0m stage [32mfrom-build-pack[0m and container [32mstep-place-tools[0m
+
+Showing logs for build [32mkeshavprasadms-sunbird-devops-m-zw88j-1[0m stage [32mfrom-build-pack[0m and container [32mstep-git-source-keshavprasadms-sunbird-devops-m-zw88j-c2f68[0m
+{"level":"warn","ts":1581920077.1655204,"logger":"fallback-logger","caller":"logging/config.go:69","msg":"Fetch GitHub commit ID from kodata failed: \"ref: refs/heads/0.8.0-**-support-backwards-incompats\" is not a valid GitHub commit ID"}
+{"level":"info","ts":1581920084.392769,"logger":"fallback-logger","caller":"git/git.go:103","msg":"Successfully cloned https://github.com/keshavprasadms/sunbird-devops.git @ v0.0.1 in path /workspace/source"}
+
+Showing logs for build [32mkeshavprasadms-sunbird-devops-m-zw88j-1[0m stage [32mfrom-build-pack[0m and container [32mstep-git-merge[0m
+Using SHAs from PULL_REFS=master:357f02cad0fc3c6e2b88c99b5186728078d45d55
+WARNING: no SHAs to merge, falling back to initial cloned commit
+
+Showing logs for build [32mkeshavprasadms-sunbird-devops-m-zw88j-1[0m stage [32mfrom-build-pack[0m and container [32mstep-setup-jx-git-credentials[0m
+Generated Git credentials file /workspace/xdg_config/git/credentials
+
+Showing logs for build [32mkeshavprasadms-sunbird-devops-m-zw88j-1[0m stage [32mfrom-build-pack[0m and container [32mstep-build-python-unittest[0m
+
+----------------------------------------------------------------------
+Ran 0 tests in 0.000s
+
+OK
+
+Showing logs for build [32mkeshavprasadms-sunbird-devops-m-zw88j-1[0m stage [32mfrom-build-pack[0m and container [32mstep-build-container-build[0m
+[36mINFO[0m[0000] Downloading base image python:onbuild        
+2020/02/17 06:14:45 No matching credentials were found, falling back on anonymous
+[36mINFO[0m[0003] Error while retrieving image from cache: getting file info: stat /workspace/sha256:43780a8431c53f4afd734ad795e03127c0c607337a60639c5903a51a03535c22: no such file or directory 
+[36mINFO[0m[0003] Downloading base image python:onbuild        
+2020/02/17 06:14:49 No matching credentials were found, falling back on anonymous
+[36mINFO[0m[0004] Executing 3 build triggers                   
+error building image: error building stage: lstat /workspace/source/requirements.txt: no such file or directory
+[31m
+Pipeline failed on stage 'from-build-pack' : container 'step-build-container-build'. The execution of the pipeline has stopped.[0m
