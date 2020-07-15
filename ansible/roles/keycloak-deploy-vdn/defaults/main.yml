@@ -1,0 +1,24 @@
+---
+sunbird_auth_version: 1.0v
+keycloak_pkg_src: https://downloads.jboss.org/keycloak/3.2.0.Final/keycloak-3.2.0.Final.tar.gz
+postgresql_driver_src: https://jdbc.postgresql.org/download/postgresql-9.4.1212.jar
+keycloak_pkg_file: "keycloak-3.2.0.Final.tar.gz"
+keycloak_sms_provider_build: "keycloak-email-phone-autthenticator-1.0-SNAPSHOT.jar"
+keycloak_ds_driver_path: "/opt/keycloak/modules/system/layers/keycloak/org/postgresql/main"
+wildfly_dir: /opt/keycloak
+keycloak_download_dir: /opt
+keycloak_download_url: https://downloads.jboss.org/keycloak/3.2.0.Final/keycloak-3.2.0.Final.tar.gz
+wildfly_user: keycloak
+wildfly_group: keycloak
+wildfly_standalone_config_path: /opt/keycloak/keycloak/standalone/configuration/standalone-ha.xml
+keycloak_download_file: keycloak-3.2.0.Final.tar.gz
+
+keycloak_ds_driver_url: https://jdbc.postgresql.org/download/postgresql-9.2.1212.jar
+keycloak_ds_driver_name: "postgresql"
+theme: "sunrise.tar.gz"
+dest_theme: "/opt/keycloak/themes/"
+theme_file: sunrise
+keycloak_home: /opt/keycloak
+login_theme: artifacts/sunbird/login
+email_theme: artifacts/sunbird/email
+tenant_name: sunbird
