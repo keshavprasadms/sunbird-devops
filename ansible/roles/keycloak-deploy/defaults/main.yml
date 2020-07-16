@@ -21,4 +21,4 @@ theme_file: sunrise
 keycloak_home: /opt/keycloak
 login_theme: artifacts/sunbird/login
 email_theme: artifacts/sunbird/email
-tenant_name: sunbird
+vdn_tenant_name: sunbird
