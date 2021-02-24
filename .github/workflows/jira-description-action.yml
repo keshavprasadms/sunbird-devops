@@ -9,7 +9,7 @@ jobs:
       - uses: cakeinpanic/jira-description-action@v0.2.0
         name: jira-description-action
         with:
-          github-token: "${{ secrets.GITHUB_TOKEN }}"
-          jira-token: "${{ secrets.JIRA_EMAIL }}:${{ secrets.API_TOKEN }}"
-          jira-base-url: "https://project-sunbird.atlassian.net"
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          jira-token: ${{ secrets.JIRA_TOKEN }}
+          jira-base-url: ${{ secrets.JIRA_BASE_URL }}
           use: both
